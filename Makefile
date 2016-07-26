@@ -1,5 +1,5 @@
 TARGET = renderer
-LIBS = -lglfw
+LIBS = -lglfw -lGL -lGLEW
 CC = gcc
 CFLAGS = -g -Wall
 
