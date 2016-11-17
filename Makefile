@@ -1,7 +1,7 @@
 TARGET = renderer
-LIBS = -lglfw -lGL -lGLEW
+LIBS = -lglfw -lGL -lGLEW `pkg-config --libs glib-2.0` `pkg-config --libs graphene-1.0` -lgsl -lgslcblas -lm -lSOIL
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall `pkg-config --cflags glib-2.0` `pkg-config --cflags graphene-1.0`
 
 .PHONY: default all clean
 
