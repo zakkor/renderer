@@ -1,4 +1,4 @@
-TARGET = build/renderer
+TARGET = renderer
 LIBS = -lglfw -lGL -lGLEW
 CC = gcc
 CFLAGS = -g -Wall
@@ -8,20 +8,20 @@ CFLAGS = -g -Wall
 default: $(TARGET)
 all: default
 
-OBJECTS = $(patsubst %.c, %.o, $(wildcard src/*.c))
+OBJECTS = $(patsubst src/%.c, build/%.o, $(wildcard src/*.c))
 HEADERS = $(wildcard src/*.h)
 
-%.o: %.c $(HEADERS)
+build/%.o: src/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -Wall $(LIBS) -o $@
+	$(CC) $(OBJECTS) -Wall $(LIBS) -o build/$@
 
 clean:
-	-rm src/*.o
-	-rm $(TARGET)
+	-rm build/*.o
+	-rm build/$(TARGET)
 
 run:
-	./$(TARGET)
+	./build/$(TARGET)
